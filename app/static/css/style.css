@@ -1,0 +1,138 @@
+body{
+    background: #353535;
+}
+
+footer{
+    margin: 20px;
+    color: rgb(0, 255, 51, .55);
+}
+
+a:hover{
+    color: #33ff00
+}
+
+footer a{
+    color: rgb(0, 255, 51, .55);
+    text-decoration: none;
+}
+
+h1{
+    color: #00FF33;
+    font-size: 32px;
+}
+
+.navbar .navbar-brand{
+    color: #33FF00;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover{
+    color: #33FF00;
+}
+
+.navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .show > .nav-link{
+    color: #33FF00;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(0, 255, 51, .55);
+}
+
+.navbar .dropdown-menu{
+    background: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity));
+}
+
+.navbar .dropdown-menu .dropdown-item:hover{
+    background-color: #484848;
+}
+
+.navbar .btn{
+    color: #33FF00;
+    border-color: #33FF00;
+}
+
+.navbar .btn:hover{
+    color: #00FF66;
+    border-color: #00FF66;
+    background: green;
+}
+
+.dashboard .card{
+    background-color: #212529
+}
+
+.dashboard .cardtitle{
+    margin-bottom: 2.0rem;
+}
+
+.dashboard h2{
+    color: #33FF00;
+    font-size: 24px;
+}
+
+.toprow .card{
+    height: 150px;
+}
+
+.bottomrow .table-dark{
+    color: #33FF00;
+    --bs-table-hover-color: #00FF66;
+}
+
+.poams .cardtitle{
+    margin-bottom: 2.0rem;
+}
+
+.poams h2{
+    color: #33FF00;
+    font-size: 24px;
+}
+
+.poamtable .table{
+    color: #33FF00;
+    --bs-table-hover-color: #00FF66;
+}
+
+.pagination .page-item.disabled .page-link{
+    background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity));
+    border-color: var(--bs-table-bg);
+    border-width: 2px;
+    color: rgb(0, 255, 51, .55);
+}
+
+.pagination .page-link{
+    background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity));
+    color: #33FF00;
+    border-width: 2px;
+    border-color: var(--bs-table-bg);
+}
+
+.form-group .control-label{
+    font-weight: bold;
+    margin-bottom: 0.2em;
+    color: #33FF00;
+}
+
+.form .checkbox{
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #33FF00;
+}
+
+.form-group .form-control{
+    color: #33FF00;
+    background-color: #212529;
+    border-color: #828181;
+    margin-bottom: 0.5em;
+}
+
+.form .btn{
+    color: #33FF00;
+    border-color: #33FF00;
+    background-color: #212529;
+}
+
+.form .btn:hover{
+    color: #00FF66;
+    border-color: #00FF66;
+    background: green;
+}
