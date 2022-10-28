@@ -1,0 +1,2 @@
+SECRET_KEY = 'secret135'
+BOOTSTRAP_SERVE_LOCAL = False
