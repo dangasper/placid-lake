@@ -1,0 +1,142 @@
+{% extends 'layout.html' %}
+{% from 'bootstrap5/table.html' import render_table %}
+
+{% block content %}
+<div class="dashboard">
+        <div class="container">
+            <div class="toprow pt-5">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1 class="cardtitle">Latest POAM Results Count</h1>
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="row">
+                                    <div class="col">
+                                        <h2 class="mt-3">1</h2>
+                                    </div>
+                                    <div class="col">
+                                        <h2 class="mt-3">2</h2>
+                                    </div>
+                                    <div class="col">
+                                        <h2 class="mt-3">3</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h2 class="mt-1">High</h2>
+                                    </div>
+                                    <div class="col">
+                                        <h2 class="mt-1">Medium</h2>
+                                    </div>
+                                    <div class="col">
+                                        <h2 class="mt-1">Low</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h1 class="cardtitle">Latest POAM Results Status Count</h1>
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="row">
+                                    <div class="col">
+                                        <h2 class="mt-3">4</h2>
+                                    </div>
+                                    <div class="col">
+                                        <h2 class="mt-3">5</h2>
+                                    </div>
+                                    <div class="col">
+                                        <h2 class="mt-3">6</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h2 class="mt-1">High over 30 days</h2>
+                                    </div>
+                                    <div class="col">
+                                        <h2 class="mt-1">Medium over 90 days</h2>
+                                    </div>
+                                    <div class="col">
+                                        <h2 class="mt-1">Low over 180 days</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottomrow pt-5">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1 class="cardtitle">Issues last 7 days</h1>
+                        <div class="card">
+                            <div class="card-body">
+                                Table here
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h1 class="cardtitle">POAM Trend Graph (6 Months)</h1>
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <canvas id="trendChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"
+integrity="sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=" crossorigin="anonymous"></script>
+<script>
+var ctxL = document.getElementById("trendChart").getContext('2d');
+var theTrendChart = new Chart(ctxL, {
+    type: 'line',
+    data: {
+        labels: ["August", "September", "October"],
+        datasets: [{
+            label: "High",
+            data: [3,2,1],
+            backgroundColor: [
+                'rgba(247, 62, 62, .2)',
+            ],
+            borderColor: [
+                'rgba(247, 62, 62, .3)',
+            ],
+            borderWidth: 6
+        },
+        {
+            label: "Medium",
+            data: [1,2,3],
+            backgroundColor: [
+                'rgba(255, 246, 123, .2)',
+            ],
+            borderColor: [
+                'rgba(255, 246, 123, .3)',
+            ],
+            borderWidth: 6
+        },
+        {
+            label: "Low",
+            data: [1,3,5],
+            backgroundColor: [
+                'rgba(123, 185, 255, .2)',
+            ],
+            borderColor: [
+                'rgba(123, 185, 255, .3)',
+            ],
+            borderWidth: 6
+        }
+        ]
+    },
+    options: {
+        responsive: true
+    }
+});
+</script>
+{% endblock %}
