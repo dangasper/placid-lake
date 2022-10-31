@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% from 'bootstrap5/table.html' import render_table %}
+{% from 'bootstrap5/pagination.html' import render_pager, render_pagination %}
 
 {% block content %}
 <div class="dashboard">
@@ -12,13 +13,13 @@
                             <div class="card-body text-center">
                                 <div class="row">
                                     <div class="col">
-                                        <h2 class="mt-3">1</h2>
+                                        <h2 class="mt-3">{{ highs }}</h2>
                                     </div>
                                     <div class="col">
-                                        <h2 class="mt-3">2</h2>
+                                        <h2 class="mt-3">{{ meds }}</h2>
                                     </div>
                                     <div class="col">
-                                        <h2 class="mt-3">3</h2>
+                                        <h2 class="mt-3">{{ lows }}</h2>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -41,13 +42,13 @@
                             <div class="card-body text-center">
                                 <div class="row">
                                     <div class="col">
-                                        <h2 class="mt-3">4</h2>
+                                        <h2 class="mt-3">{{ hsla }}</h2>
                                     </div>
                                     <div class="col">
-                                        <h2 class="mt-3">5</h2>
+                                        <h2 class="mt-3">{{ msla }}</h2>
                                     </div>
                                     <div class="col">
-                                        <h2 class="mt-3">6</h2>
+                                        <h2 class="mt-3">{{ lsla }}</h2>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -72,13 +73,14 @@
                         <h1 class="cardtitle">Issues last 7 days</h1>
                         <div class="card">
                             <div class="card-body">
-                                Table here
+                                {{ render_table(recent_poams, titles, table_classes='table table-dark table-hover') }}
+                                {{ render_pager(pagination, align='right') }}
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <h1 class="cardtitle">POAM Trend Graph (6 Months)</h1>
-                        <div class="card">
+                        <div class="card chartcard">
                             <div class="card-body text-center">
                                 <canvas id="trendChart"></canvas>
                             </div>
@@ -91,17 +93,20 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"
-integrity="sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/chart.min.js') }}"></script>
 <script>
 var ctxL = document.getElementById("trendChart").getContext('2d');
 var theTrendChart = new Chart(ctxL, {
     type: 'line',
     data: {
-        labels: ["August", "September", "October"],
+        labels: [{% for item in months %}
+                  "{{item}}",
+              {% endfor %}],
         datasets: [{
             label: "High",
-            data: [3,2,1],
+            data: [{% for item in chartHigh %}
+                  "{{item}}",
+              {% endfor %}],
             backgroundColor: [
                 'rgba(247, 62, 62, .2)',
             ],
@@ -112,7 +117,9 @@ var theTrendChart = new Chart(ctxL, {
         },
         {
             label: "Medium",
-            data: [1,2,3],
+            data: [{% for item in chartMed %}
+                  "{{item}}",
+              {% endfor %}],
             backgroundColor: [
                 'rgba(255, 246, 123, .2)',
             ],
@@ -123,7 +130,9 @@ var theTrendChart = new Chart(ctxL, {
         },
         {
             label: "Low",
-            data: [1,3,5],
+            data: [{% for item in chartLow %}
+                  "{{item}}",
+              {% endfor %}],
             backgroundColor: [
                 'rgba(123, 185, 255, .2)',
             ],

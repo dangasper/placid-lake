@@ -78,6 +78,15 @@ h1{
     --bs-table-hover-color: #00FF66;
 }
 
+.bottomrow .card
+{
+    height: 400px;
+}
+
+#trendChart {
+    margin-top: 2em;
+}
+
 .poams .cardtitle{
     margin-bottom: 2.0rem;
 }
