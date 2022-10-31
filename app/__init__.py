@@ -1,5 +1,5 @@
 from flask import Flask
-from app.configs import load_config, minify, bootstrap5, sqlalchemy, init_db_command
+from app.configs import load_config, minify, bootstrap5, sqlalchemy, init_db_command, security
 from app import routes
 
 def create_app():
@@ -10,4 +10,5 @@ def create_app():
     routes.init_app(app)
     sqlalchemy.init_app(app)
     init_db_command.init_app(app)
+    security.init_app(app)
     return app
