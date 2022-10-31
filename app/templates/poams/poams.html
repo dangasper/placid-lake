@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="poamtable">
-    table here
+    {{ render_table(data, titles, table_classes='table table-dark table-hover') }}
+    {{ render_pager(pagination, align='right') }}
 </div>
 {% endblock %}
