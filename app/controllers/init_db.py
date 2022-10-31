@@ -1,19 +1,48 @@
 from flask import current_app
 
 def init_db():
-    from app.models.poam import Poam
     current_app.db.drop_all()
     current_app.db.create_all()
 
 def init_test_load():
+    from flask import current_app
     from faker import Faker
+    from flask_security.utils import hash_password
     import random
-    from app.configs.sqlalchemy import db
+    import string
     from app.models.poam import Poam
+    from app.models.role import Role
 
     fake = Faker()
 
     init_db()
+
+    session = current_app.db.session
+
+    security = current_app.extensions.get('security')
+
+    user_role = Role(name='user')
+    editor_role = Role(name='editor')
+    admin_role = Role(name='admin')
+    session.add_all([user_role, editor_role, admin_role])
+    session.commit()
+
+    test_admin_user = security.datastore.create_user(
+        username='admin',
+        password=hash_password('admin'),
+        roles=[user_role, admin_role],
+    )
+    session.add(test_admin_user)
+
+    for x in range(0, 25):
+        tmp_pass = ''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(10))
+        tmp_username = fake.first_name().lower() + "." + fake.last_name().lower()
+        security.datastore.create_user(
+            username=tmp_username,
+            password=hash_password(tmp_pass),
+            roles=[user_role, ]
+        )
+    session.commit()
 
     threatlist = [ 'High', 'Medium', 'Low' ]
     issues = [
@@ -48,5 +77,5 @@ def init_test_load():
             created = tmp_datetime
 
         )
-        db.session.add(_poams)
-    db.session.commit()
+        session.add(_poams)
+    session.commit()

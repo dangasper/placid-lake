@@ -21,8 +21,6 @@ def get_poam_table(page, count):
     return titles, data, pagination
 
 def get_dashboard(page):
-    session = current_app.db.session
-    db = current_app.db
 
     highs = get_poam_count_byThreat('High')
     meds = get_poam_count_byThreat('Medium')
