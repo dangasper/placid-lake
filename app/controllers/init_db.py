@@ -5,7 +5,6 @@ def init_db():
     from app.models.role import Role
     from flask_security.utils import hash_password
 
-    current_app.db.drop_all()
     current_app.db.create_all()
 
     session = current_app.db.session
@@ -37,6 +36,7 @@ def init_test_load():
 
     fake = Faker()
 
+    current_app.db.drop_all()
     init_db()
 
     session = current_app.db.session
