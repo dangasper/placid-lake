@@ -1,4 +1,4 @@
-from sqlalchemy import DateTime
+from sqlalchemy import Date
 from app.configs.sqlalchemy import db
 
 class Poam(db.Model):
@@ -7,4 +7,4 @@ class Poam(db.Model):
     poamid = db.Column(db.String(25), nullable=False, unique=True)
     description = db.Column(db.Text, nullable=False)
     threat = db.Column(db.String(10), nullable=False)
-    created = db.Column(DateTime, default=db.func.now())
+    created = db.Column(Date, default=db.func.now())
