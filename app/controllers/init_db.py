@@ -30,9 +30,23 @@ def init_test_load():
     test_admin_user = security.datastore.create_user(
         username='admin',
         password=hash_password('admin'),
-        roles=[user_role, admin_role],
+        roles=[admin_role],
     )
     session.add(test_admin_user)
+
+    test_editor_user = security.datastore.create_user(
+        username='editor',
+        password=hash_password('editor'),
+        roles=[editor_role]
+    )
+    session.add(test_editor_user)
+
+    test_user = security.datastore.create_user(
+        username='user',
+        password=hash_password('user'),
+        roles=[user_role]
+    )
+    session.add(test_user)
 
     for x in range(0, 25):
         tmp_pass = ''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(10))
@@ -40,7 +54,7 @@ def init_test_load():
         security.datastore.create_user(
             username=tmp_username,
             password=hash_password(tmp_pass),
-            roles=[user_role, ]
+            roles=[user_role, ],
         )
     session.commit()
 
