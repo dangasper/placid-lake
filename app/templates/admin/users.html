@@ -1,10 +1,9 @@
 {% extends 'layout.html' %}
-{% from 'bootstrap5/table.html' import render_table %}
 {% from 'bootstrap5/pagination.html' import render_pager, render_pagination %}
 
 {% block content %}
-<div class="poamtable">
-    {% if current_user.has_role('admin') or current_user.has_role('editor') %}
+<div class="usertable">
+    {% if current_user.has_role('admin') %}
     <table class="table table table-dark table-hover">
         <thead>
             <tr>
@@ -13,7 +12,7 @@
                 {% endfor %}
                 <th scope="col">
                     Actions
-                    <a class="action-icon text-decoration-none" href="/poams/new" title="New"> <svg class="bi"
+                    <a class="action-icon text-decoration-none" href="/admin/user/new" title="New"> <svg class="bi"
                             width="1em" height="1em" fill="currentColor">
                             <use xlink:href="/bootstrap/static/icons/bootstrap-icons.svg#plus-circle-fill" />
                         </svg> </a>
@@ -22,36 +21,32 @@
         </thead>
         <tbody>
             <tr>
-                {% for p in data %}
-                <th scope="row">{{ p.vulnid }}</th>
-                <td>{{ p.description }}</td>
-                <td>{{ p.threat }}</td>
-                <td>{{ p.created }}</td>
-                <td>{{ p.age }}</td>
+                {% for u in data %}
+                <th scope="row">{{ u.username }}</th>
+                <td>{{ u.role }}</td>
+                <td>{{ u.active }}</td>
                 <td>
-                    <a class="action-icon text-decoration-none" href="/poams/{{ p.poamid }}/view" title="View"> <svg
-                            class="bi" width="1em" height="1em" fill="currentColor">
+                    <a class="action-icon text-decoration-none" href="/admin/user/{{ u.userid }}/view" title="View">
+                        <svg class="bi" width="1em" height="1em" fill="currentColor">
                             <use xlink:href="/bootstrap/static/icons/bootstrap-icons.svg#eye-fill"></use>
                         </svg> </a>
-                    <a class="action-icon text-decoration-none" href="/poams/{{ p.poamid }}/edit" title="Edit"> <svg
-                            class="bi" width="1em" height="1em" fill="currentColor">
+                    <a class="action-icon text-decoration-none" href="/admin/user/{{ u.userid }}/edit" title="Edit">
+                        <svg class="bi" width="1em" height="1em" fill="currentColor">
                             <use xlink:href="/bootstrap/static/icons/bootstrap-icons.svg#pencil-fill"></use>
                         </svg> </a>
-                    <form style="display:inline" action="/poams/{{ p.poamid }}/delete" method="post"> <input
-                            type="hidden" name="csrf_token" value="{{ csrf_token() }}" /><a
-                            class="action-icon text-decoration-none" href="javascript:{}"
+                    <form style="display:inline" action="/admin/user/{{ u.userid }}/delete" method="post"> <input
+                            type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <a class="action-icon text-decoration-none" href="javascript:{}"
                             onclick="this.closest('form').submit();return false;" title="Delete"> <svg class="bi"
                                 width="1em" height="1em" fill="currentColor">
                                 <use xlink:href="/bootstrap/static/icons/bootstrap-icons.svg#trash-fill"></use>
-                            </svg> </a> </form>
+                            </svg> </a>
+                    </form>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    {{ render_pager(pagination, align='right') }}
-    {% else %}
-    {{ render_table(data, titles, table_classes='table table-dark table-hover') }}
     {{ render_pager(pagination, align='right') }}
     {% endif %}
 </div>

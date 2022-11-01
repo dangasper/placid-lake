@@ -115,32 +115,39 @@ h1{
     border-color: var(--bs-table-bg);
 }
 
-.form-group .control-label{
-    font-weight: bold;
-    margin-bottom: 0.2em;
-    color: #33FF00;
+.form-wrapper {
+    margin: 1em 0;
+    display: flex;
+    flex-direction: column;
 }
 
-.form .checkbox{
+.form-wrapper label{
     font-weight: bold;
     margin-bottom: 0.5em;
     color: #33FF00;
 }
 
-.form-group .form-control{
+.form-wrapper .loginfield input{
     color: #33FF00;
     background-color: #212529;
     border-color: #828181;
     margin-bottom: 0.5em;
 }
 
-.form .btn{
+.form-wrapper h1{
+    margin-bottom: 2em;
+}
+.form-wrapper .loginfield input:focus{
+    outline: none;
+}
+
+.form-wrapper .submit-button input{
     color: #33FF00;
     border-color: #33FF00;
     background-color: #212529;
 }
 
-.form .btn:hover{
+.form-wrapper .submit-button input:hover{
     color: #00FF66;
     border-color: #00FF66;
     background: green;
