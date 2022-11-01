@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# Allow files and directories
+!/requirements.txt
+!/app
+!/run.py
+!/wsgi.py
+!/gunicorn_config.py

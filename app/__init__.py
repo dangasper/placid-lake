@@ -15,8 +15,4 @@ def create_app():
     loginmanager.init_app(app)
     csrf.init_app(app)
 
-    @app.before_first_request
-    def init_initial_db():
-        init_db_command.init_db()
-
     return app
