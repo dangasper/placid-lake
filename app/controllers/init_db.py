@@ -1,8 +1,30 @@
 from flask import current_app
 
 def init_db():
+    from flask import current_app
+    from app.models.role import Role
+    from flask_security.utils import hash_password
+
     current_app.db.drop_all()
     current_app.db.create_all()
+
+    session = current_app.db.session
+
+    security = current_app.extensions.get('security')
+
+    user_role = Role(name='user')
+    editor_role = Role(name='editor')
+    admin_role = Role(name='admin')
+    session.add_all([user_role, editor_role, admin_role])
+    session.commit()
+
+    _admin_user = security.datastore.create_user(
+        username='admin',
+        password=hash_password('admin'),
+        roles=[admin_role],
+    )
+    session.add(_admin_user)
+    session.commit()
 
 def init_test_load():
     from flask import current_app
@@ -20,19 +42,6 @@ def init_test_load():
     session = current_app.db.session
 
     security = current_app.extensions.get('security')
-
-    user_role = Role(name='user')
-    editor_role = Role(name='editor')
-    admin_role = Role(name='admin')
-    session.add_all([user_role, editor_role, admin_role])
-    session.commit()
-
-    test_admin_user = security.datastore.create_user(
-        username='admin',
-        password=hash_password('admin'),
-        roles=[admin_role],
-    )
-    session.add(test_admin_user)
 
     test_editor_user = security.datastore.create_user(
         username='editor',
