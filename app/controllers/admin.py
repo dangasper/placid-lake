@@ -39,17 +39,13 @@ def add_user(form):
 
     security = current_app.extensions.get('security')
 
-    if form.active.data == 'True':
-        is_active = 1
-    else:
-        is_active = 0
-
+    _active = form.active.data == 'True'
     try:
         new_user = security.datastore.create_user(
         username=form.username.data,
         password=hash_password(form.password.data),
         roles=[form.role.data,],
-        active=is_active,
+        active=_active
         )
         session.add(new_user)
         session.commit()

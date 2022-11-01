@@ -37,5 +37,5 @@ class AddUser(FlaskForm):
     username = StringField('Username:', validators=[DataRequired()])
     password = PasswordField('Password', [InputRequired()])
     role = SelectField(choices=[('admin', 'Admin'), ('editor', 'Editor'), ('user', 'User')], validators=[DataRequired()])
-    active = SelectField(choices=[(1, 'True'), (0, 'False')], validators=[DataRequired()])
+    active = SelectField(choices=[('True', 'True'), ('False', 'False')], validators=[DataRequired()])
     submit = SubmitField("Add User")
