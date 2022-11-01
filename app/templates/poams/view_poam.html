@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="poam_info">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ view_poam.poamid }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ view_poam.threat }}</h6>
+          <p class="card-text">{{ view_poam.description }}</p>
+          <p class="card-text">{{ view_poam.created }}</p>
+          <a href="/poams" class="card-link">Go Back</a>
+        </div>
+      </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+<h2 class="mb-3">Create user:</h2>
+<form class="form" method="post" role="form">
+    {{ form.csrf_token }}
+    <div class="mb-3">
+        {{ form.username.label(class="form-label") }}
+        {{ form.username(class="form-control") }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.password.label(class="form-label") }}
+        {{ form.password(class="form-control") }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.role.label(class="form-label") }}
+        {{ form.role(class="form-control") }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.active.label(class="form-label") }}
+        {{ form.active(class="form-control") }}
+    </div>
+
+    <div>
+        {{ form.submit }}
+    </div>
+</form>
+</div>
+{% endblock %}

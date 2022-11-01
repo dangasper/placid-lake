@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="user_info">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ view_user.username }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ view_user.role }}</h6>
+          <p class="card-text">Active: {{ view_user.active }}</p>
+          <a href="/admin/users" class="card-link">Go Back</a>
+        </div>
+      </div>
+</div>
+{% endblock %}

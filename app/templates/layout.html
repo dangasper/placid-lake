@@ -8,7 +8,7 @@
     <title>Crypto Corp POAMtrkr</title>
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     {{ bootstrap.load_css() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">-->
 </head>
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
@@ -20,8 +20,33 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    {{ render_nav_item('bp_dashboard.dashboard', 'Dashboard') }}
-                    {{ render_nav_item('bp_poams.poams', 'Poams') }}
+                    {{ render_nav_item('bp_dashboard.dashboard', 'Dashboard', _use_li=True) }}
+                    {% if not current_user.is_authenticated %}
+                    {{ render_nav_item('bp_auth.login', 'Login', _use_li=True) }}
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                    {{ render_nav_item('bp_poams.poams', 'Poams', _use_li=True) }}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          User
+                        </a>              
+                    <ul class="dropdown-menu">
+                        {{ render_nav_item('bp_user.profile', 'Profile', _use_li=True) }}
+                        {{ render_nav_item('bp_user.password', 'Change Password', _use_li=True) }}
+                      </ul>
+                      </li>
+                      {% if current_user.has_role('admin') %}
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Admin
+                        </a>              
+                    <ul class="dropdown-menu">
+                        {{ render_nav_item('bp_admin.users', 'Users', _use_li=True) }}
+                      </ul>
+                      </li>
+                    {% endif %}
+                    {{ render_nav_item('bp_auth.logout', 'Logout', _use_li=True) }}
+                    {% endif %}
                 </ul>
             </div>
         </div>

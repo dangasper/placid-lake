@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+<h2 class="mb-3">Edit poam: {{ poam.poamid }}</h2>
+<form class="form" method="post" role="form">
+    {{ form.csrf_token }}
+    <div class="mb-3">
+        {{ form.poamid.label(class="form-label") }}
+        {{ form.poamid(placeholder=poam.poamid, class="form-control", value=poam.poamid) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.description.label(class="form-label") }}
+        <textarea class="form-control" id="description" name="description">{{ poam.description }}</textarea>
+    </div>
+
+    <div class="mb-3">
+        {{ form.threat.label(class="form-label") }}
+        {{ form.threat(placeholder=poam.threat, class="form-control") }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.created.label(class="form-label") }}
+        <input class="form-control" id="created" name="created" required="" type="date" value="{{ poam.created }}">
+    </div>
+
+    <div>
+        {{ form.submit }}
+    </div>
+</form>
+</div>
+{% endblock %}
