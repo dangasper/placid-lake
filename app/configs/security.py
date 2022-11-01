@@ -8,4 +8,4 @@ security = Security()
 
 def init_app(app: Flask):
     user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-    security.init_app(app, user_datastore)
+    security.init_app(app, user_datastore, register_blueprint=False)
