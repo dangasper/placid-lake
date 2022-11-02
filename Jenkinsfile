@@ -32,16 +32,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh 'docker stop $CONTAINER_NAME || true'
-                sh 'docker rm $CONTAINER_NAME || true'
-                sh 'docker run -d -p 5000:5000 --name $CONTAINER_NAME $DOCKER_HUB_REPO'
-           }
-       }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-                sh 'kubectl -- apply -f deployment.yaml'
-                sh 'kubectl -- apply -f service.yaml'
+                sh 'kubectl -- apply -f k8s/deployment.yaml'
+                sh 'kubectl -- apply -f k8s/service.yaml'
             }
         }
    }
