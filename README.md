@@ -8,10 +8,15 @@ This webapp is created using the Python Flask framework and a Model-View-Control
 
 ## File descriptions
 You can find a description of each file and associated functions if applicable at the following:
+
 [configs](docs/CONFIGS.md)
+
 [controllers](docs/CONTROLLERS.md)
+
 [models](docs/MODELS.md)
+
 [routes](docs/ROUTES.md)
+
 [templates](docs/TEMPLATES.md)
 
 
