@@ -67,3 +67,7 @@ Includes layout.html and Bootstrap5 render_form for rendering password change fo
 ### user/profile.html
 
 Includes layout.html and renders a profile page for a user.
+
+## layout.html
+
+Provides base layout of HTMl page including Bootstrap5 CSS, and JS. Provides navigation bar and content block section for filling in main page area.
