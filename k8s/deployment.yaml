@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poamtrkr-deployment # name of the deployment
+
+spec:
+  template: # pod defintion
+    metadata:
+      name: poamtrkr # name of the pod
+      labels:
+        app: poamtrkr
+        tier: frontend
+    spec:
+      containers:
+        - name: poamtrkr
+          image: dangasper/placid-lake:latest
+  replicas: 1
+  selector: # Mandatory, Select the pods which needs to be in the replicaset
+    matchLabels:
+      app: poamtrkr
+      tier: frontend
