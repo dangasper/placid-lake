@@ -13,6 +13,11 @@ def init_app(app: Flask, test_config=None):
         SESSION_TYPE = 'filesystem',
         SESSION_FILE_DIR = 'instance',
         SESSION_PERMANENT = False,
+        LOG_TYPE = 'stream',
+        LOG_LEVEL = 'INFO',
+        LOG_DIR = 'instance/logs',
+        LOG_MAX_BYTES = '100_000_000',
+        LOG_COPIES = '5',
     )
     
     if test_config is None:
